@@ -51,7 +51,7 @@ function showWeatherData (data){
     `<div class="weather-item">
         <div><br>Sunrise -${convertMsToTime(sunrise)} am </div>
         <div></div>
-    </div>
+    </div>  
     <div>
     <div>City -${data.city.name}</div>
     </div>
@@ -65,32 +65,19 @@ function showWeatherData (data){
     
     let otherDayForcast = ''
     data.list.forEach((day, idx) => {
-        if(idx == 0){
-            currentTempEl.innerHTML = `
-            <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-            <div class="other">
-                <br></br>
-                <div><b>Date : </b>  ${convertDigitIn(day.dt_txt)}</div>
-                <div class="temp"><b>Temperature : </b> ${day.main.temp}&#176;C<br></div>
-                <div class="temp"><b>Pressure : </b> ${day.main.pressure} hPa  <b>Humidity : </b>  ${day.main.humidity} </div>
-                <div><b>Temperature-max : </b>  ${day.main.temp_max}&#176;C</div>
-            </div>
-            
-            `
-        }else{
             otherDayForcast += `
             <div class="weather-forecast-item" >
-                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                <div ><b>Date : </b>${convertDigitIn(day.dt_txt)}</div>
-                <div></div>
-                <div cla    ss="temp" align="right" ><b>Temperature : </b>${day.main.temp}&#176;C<br></div>
-                <div class="temp"><b>Pressure : </b> ${day.main.pressure} hPa</div>
-                <div><b>Humidity : </b>  ${day.main.humidity}</div>
-                <div></div>
-                <div><b>Temperature-max : </b>  ${day.main.temp_max}&#176;C</div>
-                <div></div>
+                <div>
+                    <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon" id="img">
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div>
+                    <div> <b>Date : </b>${day.dt_txt.split(" ")[0].split("-").reverse().join("-")}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Time : </b>${(tConvert(day.dt_txt.split(" ")[1])).split(":")[0]}:${(tConvert(day.dt_txt.split(" ")[1])).split(":")[2]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <b>Temperature : </b>${day.main.temp}&#176;C<b><br><br>Pressure : </b> ${day.main.pressure}hPa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                    <b>Humidity : </b>  ${day.main.humidity}%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Temperature-max : </b>  ${day.main.temp_max}&#176;C</div>
+                </div>
             </div>           `
-        }
     })
     weatherForecastEl.innerHTML = otherDayForcast;
 }
@@ -115,8 +102,19 @@ function convertMsToTime(milliseconds) {
 
 
 function convertDigitIn(str){
-
 return str.split('/').reverse().join('/');
 }
+
+
+function tConvert (time) {
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+  
+    if (time.length > 1) { // If time format correct
+      time = time.slice (1);  // Remove full string match value
+      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+  }
 
 
