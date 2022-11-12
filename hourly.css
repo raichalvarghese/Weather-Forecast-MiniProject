@@ -84,6 +84,23 @@ background-color: #0c525c;
     color:#fff;
 }
 
+.search-box{
+    padding: 100px 500px;
+    color:rgb(253, 249, 249);
+    display: flex;  
+    flex-direction: column;
+    left: 30px;
+    right: 35px;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: 30px;
+    width: 40%;
+    margin: 11rem auto;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: rgba(255,255,255, 0.2);
+}
+
 
 .current-info{
     display: flex;

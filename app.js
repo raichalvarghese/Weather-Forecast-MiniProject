@@ -34,8 +34,8 @@ function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {       
         let {latitude, longitude } = success.coords;
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-        console.log(data)
         showWeatherData(data);
+        console.log(data);
         })
     })
 }
@@ -69,6 +69,7 @@ function showWeatherData (data){
             <div class="weather-forecast-item" >
                 <div>
                     <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon" id="img">
+                    <h4 style="color: #6167c1;">${day.weather[0].main}</h4>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div>
