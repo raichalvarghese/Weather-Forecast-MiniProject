@@ -15,6 +15,7 @@ button.addEventListener('click',function(){
         Pressure - ${data.main.pressure} hPa<br>
         Humidity - ${data.main.humidity} %<br>Wind_Speed - ${data.wind.speed} m/s<br>
         Country - ${data.sys.country}`;
+        console.log(data);
         
     }
     )
