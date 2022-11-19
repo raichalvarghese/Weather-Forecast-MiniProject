@@ -11,16 +11,16 @@ function TopButtons({setQuery}) {
         title:'Chicago'
     },
     {
-        id:1,
+        id:3,
         title:'Delhi'
     },
     {
-        id:1,
+        id:4,
         title:'Sydney'
     }, 
 
     {
-      id:1,
+      id:5,
       title:'Moscow'
     }
   ]
