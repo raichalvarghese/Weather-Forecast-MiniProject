@@ -38,8 +38,9 @@ const formatCurrentWeather = (data) => {
     sunset,
     details,
     icon,
-    speed,
+    speed
   };
+  
 };
 
 const formatForecastWeather = (data) => {

@@ -33,16 +33,16 @@ function Main() {
   }, [query, units]);
 
   const formatBackground = () => {
-    if (!weather) return "bg2.jpg";
+    if (!weather) return "from-cyan-700 to-blue-800";
     const threshold = units === "metric" ? 20 : 60;
-    if (weather.temp <= threshold) return "bg2.jpg";
+    if (weather.temp <= threshold) return "from-cyan-700 to-blue-800";
 
-    return "bg2.jpg";
+    return "from-yellow-700 to-orange-700";
   };
 
   return (
     <div
-      className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
+      className={`mx-auto max-w-screen-md mt-6 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
     >
       <TopButtons setQuery={setQuery} />
       <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
@@ -57,7 +57,7 @@ function Main() {
         </div>
       )}
 
-      <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
+      <ToastContainer autoClose={3000} theme="colored" newestOnTop={true} />
     </div>
   );
 }
